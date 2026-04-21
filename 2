@@ -1,0 +1,98 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET    -1
+#define SCREEN_ADDRESS 0x3C
+
+// Create the display object
+Adafruit_SSD1306 display(
+  SCREEN_WIDTH,
+  SCREEN_HEIGHT,
+  &Wire,
+  OLED_RESET
+);
+
+void setup() {
+  // Initialize I2C (ESP32 default pins)
+  Wire.begin(21, 22);
+
+  // Initialize OLED display
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+    Serial.begin(115200);
+    Serial.println("SSD1306 allocation failed");
+    while (true); // Stop execution
+  }
+
+  // Clear display buffer
+  display.clearDisplay();
+
+  // Text settings
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+
+  // Print text
+  display.println("ESP32 + OLED");
+  display.println("Wokwi OK");
+
+  // Show on screen
+  display.display();
+}
+
+void loop() {
+  // Nothing to do (static display)
+}
+
+
+
+
+
+
+
+
+
+https://wokwi.com/projects/461575421671497729
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//theory
+// ESP32 Microcontroller:
+// ESP32 is a low-cost, low-power SoC with built-in Wi-Fi and Bluetooth, widely used in IoT. It supports GPIO pins for communication like I2C.
+
+// OLED Display:
+// OLED is an efficient display used in IoT devices. The SSD1306 module commonly offers 128×64 pixel resolution.
+
+// I2C Protocol:
+// I2C is a two-wire communication protocol:
+
+// SDA: Data transfer
+// SCL: Clock signal
+// It allows multiple devices to connect using unique addresses.
+
+//conclusion
+//Successfully interfaced ESP32 with an OLED display using I2C to display text and graphics.
+// Gained understanding of I2C communication and display libraries.
+// This setup can be extended for IoT applications like sensor data display and user interfaces.

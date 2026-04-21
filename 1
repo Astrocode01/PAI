@@ -1,0 +1,93 @@
+#define LED_PIN 2
+#define BUTTON_PIN 15
+void setup() {
+pinMode(LED_PIN, OUTPUT);
+pinMode(BUTTON_PIN, INPUT_PULLUP);
+Serial.begin(115200);
+}
+void loop() {
+int buttonState = digitalRead(BUTTON_PIN);
+Serial.println(buttonState);
+if (buttonState == LOW) {
+digitalWrite(LED_PIN, HIGH);
+} else {
+digitalWrite(LED_PIN, LOW);
+}
+}
+
+
+
+
+
+
+
+https://wokwi.com/projects/461563698737315841
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//theory
+// 1. GPIO (General Purpose Input/Output):
+// ESP32 has multiple GPIO pins that can be set as input or output using pinMode().
+
+// 2. LED Blinking:
+// LEDs are controlled using HIGH (ON) and LOW (OFF) signals via digitalWrite().
+
+// 3. Button Input:
+// Buttons are connected to GPIO pins, and their state is read using digitalRead().
+
+// 4. Serial Communication (UART):
+// Used for communication between ESP32 and computer; initialized using Serial.begin(baudRate).
+
+// 5. Delays:
+// delay(ms) is used to pause execution for timing control.
+
+//multiple gpio pin code (if needed)
+// #define LED1 2
+// #define LED2 4
+// #define LED3 5
+// #define BUTTON_PIN 15
+
+// void setup() {
+//   pinMode(LED1, OUTPUT);
+//   pinMode(LED2, OUTPUT);
+//   pinMode(LED3, OUTPUT);
+//   pinMode(BUTTON_PIN, INPUT_PULLUP);
+//   Serial.begin(115200);
+// }
+
+// void loop() {
+//   int buttonState = digitalRead(BUTTON_PIN);
+//   Serial.println(buttonState);
+
+//   if (buttonState == LOW) {
+//     digitalWrite(LED1, HIGH);
+//     digitalWrite(LED2, HIGH);
+//     digitalWrite(LED3, HIGH);
+//   } else {
+//     digitalWrite(LED1, LOW);
+//     digitalWrite(LED2, LOW);
+//     digitalWrite(LED3, LOW);
+//   
+// }
+
+
+// conclusion
+// Learned basic GPIO programming on ESP32.
+// Implemented LED blinking using GPIO.
+// Understood button input and LED control.
+// Demonstrated UART communication using serial output.

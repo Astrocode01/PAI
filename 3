@@ -1,0 +1,64 @@
+#include <Arduino.h>
+
+#define SERVO_PIN 18
+#define PWM_CHANNEL 0
+#define PWM_FREQ 50
+#define PWM_RESOLUTION 16
+
+void moveServo(int angle);
+
+void setup() {
+  // Attach pin to PWM (NEW API)
+  ledcAttach(SERVO_PIN, PWM_FREQ, PWM_RESOLUTION);
+}
+
+void loop() {
+  moveServo(0);
+  delay(1000);
+
+  moveServo(90);
+  delay(1000);
+
+  moveServo(180);
+  delay(1000);
+}
+
+void moveServo(int angle) {
+  // 16-bit resolution → duty range 0–65535
+  uint32_t duty = map(angle, 0, 180, 1638, 8192);
+
+  // FIX: use SERVO_PIN (not PWM_CHANNEL)
+  ledcWrite(SERVO_PIN, duty);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://wokwi.com/projects/461667994720114689
+
+3

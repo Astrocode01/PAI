@@ -1,0 +1,43 @@
+https://wokwi.com/projects/new/esp32
+
+
+
+const int button1 = 4;   // Start point
+const int button2 = 5;   // End point
+
+unsigned long startTime = 0;
+unsigned long endTime = 0;
+
+float distance = 10.0; // distance in meters
+
+void setup() {
+  Serial.begin(9600);
+  
+  pinMode(button1, INPUT);
+  pinMode(button2, INPUT);
+}
+
+void loop() {
+
+  // Start button pressed
+  if (digitalRead(button1) == HIGH) {
+    startTime = millis();
+    Serial.println("Vehicle detected at Point A");
+    delay(300); // debounce
+  }
+
+  // End button pressed
+  if (digitalRead(button2) == HIGH) {
+    endTime = millis();
+    Serial.println("Vehicle detected at Point B");
+
+    float timeTaken = (endTime - startTime) / 1000.0; // seconds
+    float speed = distance / timeTaken; // m/s
+
+    Serial.print("Speed: ");
+    Serial.print(speed);
+    Serial.println(" m/s");
+
+    delay(1000); // avoid repeated readings
+  }
+}
